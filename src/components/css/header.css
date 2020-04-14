@@ -1,0 +1,15 @@
+.header{
+    background-color: #fff;
+
+    /* position: sticky;
+    top: 1px; */
+}
+.headerMenu{
+    width: 900px;
+    margin: 0 auto;
+}
+.headerMenuItem{
+    width: 300px;
+    font-size: 24px;
+    text-align: center;
+  }
