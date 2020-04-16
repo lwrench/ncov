@@ -1,107 +1,65 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Tabs } from "antd";
 import echarts from "echarts";
 import "echarts/lib/component/tooltip";
 import "echarts/lib/component/title";
 import "echarts/lib/component/visualMap";
 import "echarts/lib/chart/map";
-import "echarts/map/js/china";
 
 import "../css/mapChart.css";
 
-import { reqMapChartInChinaAll } from "../../api";
-
-
-
-
+import "echarts/map/js/province/anhui";
+import "echarts/map/js/province/aomen";
+import "echarts/map/js/province/beijing";
+import "echarts/map/js/province/chongqing";
+import "echarts/map/js/province/fujian";
+import "echarts/map/js/province/gansu";
+import "echarts/map/js/province/guangdong";
+import "echarts/map/js/province/guangxi";
+import "echarts/map/js/province/guizhou";
+import "echarts/map/js/province/hainan";
+import "echarts/map/js/province/hebei";
+import "echarts/map/js/province/heilongjiang";
+import "echarts/map/js/province/henan";
+import "echarts/map/js/province/hubei";
+import "echarts/map/js/province/hunan";
+import "echarts/map/js/province/jiangsu";
+import "echarts/map/js/province/jiangxi";
+import "echarts/map/js/province/jilin";
+import "echarts/map/js/province/liaoning";
+import "echarts/map/js/province/neimenggu";
+import "echarts/map/js/province/ningxia";
+import "echarts/map/js/province/qinghai";
+import "echarts/map/js/province/shandong";
+import "echarts/map/js/province/shanghai";
+import "echarts/map/js/province/shanxi";
+import "echarts/map/js/province/sichuan";
+import "echarts/map/js/province/taiwan";
+import "echarts/map/js/province/tianjin";
+import "echarts/map/js/province/xianggang";
+import "echarts/map/js/province/xinjiang";
+import "echarts/map/js/province/xizang";
+import "echarts/map/js/province/yunnan";
+import "echarts/map/js/province/zhejiang";
 
 const { TabPane } = Tabs;
 
-class MapChartInChina extends Component {
-    state = {
-        all: [
-            
-        ],
-        data2: [
-            {
-                name: "大兴区",
-                value: 390,
-                alarm_num: 54,
-            },
-            {
-                name: "西城",
-                value: 119,
-            },
-            {
-                name: "朝阳",
-                value: 55,
-                alarm_num: 9,
-            },
-            {
-                name: "丰台",
-                value: 329,
-            },
-            {
-                name: "石景山",
-                value: 219,
-                alarm_num: 14,
-            },
-            {
-                name: "海淀",
-                value: 290,
-            },
-            {
-                name: "门头沟",
-                value: 319,
-                alarm_num: 2,
-            },
-            {
-                name: "房山",
-                value: 199,
-            },
-            {
-                name: "通州",
-                value: 419,
-                alarm_num: 11,
-            },
-            {
-                name: "顺义",
-                value: 299,
-            },
-            {
-                name: "昌平",
-                value: 49,
-            },
-            {
-                name: "大兴",
-                value: 219,
-                alarm_num: 15,
-            },
-            {
-                name: "怀柔",
-                value: 89,
-            },
-            {
-                name: "平谷",
-                value: 49,
-            },
-            {
-                name: "密云",
-                value: 209,
-                alarm_num: 27,
-            },
-            {
-                name: "延庆",
-                value: 129,
-            },
-        ]
+class MapChartLocal extends Component {
+    static propTypes = {
+        location: PropTypes.string.isRequired,
     };
-
-    async componentDidMount() {
-        const chart1 = echarts.init(this.refs.map);
-        chart1.setOption({
+    state={
+        all:[]
+    }
+    componentDidMount() {
+        const { location } = this.props;
+        // console.log("location", location);
+        const text = location + "现有累计确诊人数分布图";
+        const chart = echarts.init(this.refs.map);
+        chart.setOption({
             title: {
-                text: "全国现有确诊人数分布图",
+                text: text,
             },
             tooltip: {
                 triggerOn: "click",
@@ -118,51 +76,50 @@ class MapChartInChina extends Component {
                 text: ["高", "低"],
                 pieces: [
                     {
-                        gt: 10000,
-                        label: "> 10000 人",
+                        gt: 1000,
+                        label: "> 1000 人",
                         color: "#7f1100",
                     },
                     {
-                        gte: 1000,
-                        lte: 9999,
-                        label: "1000 - 9999人",
-                        color: "#cc2929",
-                    },
-
-                    {
                         gte: 100,
-                        lte: 999,
-                        label: "100 - 999 人",
+                        lte: 1000,
+                        label: "100 - 1000 人",
                         color: "#ff5428",
                     },
                     {
                         gte: 10,
-                        lte: 99,
-                        label: "10 - 99 人",
+                        lt: 100,
+                        label: "10 - 100 人",
                         color: "#ff8c71",
                     },
                     {
                         gte: 1,
-                        lte: 9,
+                        lt: 9,
                         label: "1 - 9 人",
+                        color: "#ffd768",
+                    },
+                    {
+                        value: 0,
                         color: "#ffffff",
                     },
                 ],
                 show: !0,
             },
             geo: {
-                map: "china",
+                map: location,
                 roam: !1,
                 scaleLimit: {
                     min: 1,
                     max: 2,
                 },
-                zoom: 1.23,
-                top: 120,
+                zoom: 1.2,
+                top: 100,
+                // bottom: 100,
+
                 label: {
                     normal: {
                         show: !0,
-                        fontSize: "14",
+                        fontSize: "12",
                         color: "rgba(0,0,0,0.7)",
                     },
                 },
@@ -173,7 +130,7 @@ class MapChartInChina extends Component {
                         borderColor: "rgba(0, 0, 0, 0.2)",
                     },
                     emphasis: {
-                        areaColor: "#2C98D7",
+                        areaColor: "#f2d5ad",
                         shadowOffsetX: 0,
                         shadowOffsetY: 0,
                         borderWidth: 0,
@@ -181,11 +138,12 @@ class MapChartInChina extends Component {
                 },
             },
         });
-        chart1.showLoading();
-        const all = await reqMapChartInChinaAll();
-        this.setState(this.state = {all});
-        chart1.hideLoading();
-        chart1.setOption({
+
+        chart.showLoading();
+        // const all = await reqMapChartInChinaAll();
+        // this.setState(this.state = {all});
+        chart.hideLoading();
+        chart.setOption({
             series: [
                 {
                     name: "确诊病例",
@@ -196,7 +154,6 @@ class MapChartInChina extends Component {
             ],
         });
     }
-
     render() {
         return (
             <div>
@@ -218,4 +175,4 @@ class MapChartInChina extends Component {
     }
 }
 
-export default MapChartInChina;
+export default MapChartLocal;

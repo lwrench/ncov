@@ -17,3 +17,8 @@ export const reqInfoCardInWorld = () => ajax(BASE + "/infoCardInWorld")
 export const reqMapChartInWorldAll=()=>ajax(BASE+"/mapChartInWorldAll")
 export const reqConfirmTrendInWorld=()=>ajax(BASE+"/confirmTrendInWorld")
 export const reqDeadTrendInWorld =()=>ajax(BASE+"/deadTrendInWorld")
+
+export const reqInfoCardInProvince=(data)=>ajax(BASE+"/infoCardLocal",data)
+export const reqMapChartInProvince=(data)=>ajax(BASE+"/mapChartLocal",data)
+export const reqConfirmTrendInProvince=(data)=>ajax(BASE+"/confirmTrendInProvince",data)
+export const reqDeadCureTrendInProvince=(data)=>ajax(BASE+"/deadCureTrendInProvince",data)

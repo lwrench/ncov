@@ -14,22 +14,31 @@ class App extends Component {
     getKey = (key) => {
         this.setState({ key });
     };
-    getLocation() {
+    componentDidMount() {
+        const map=new Map();
+        map.set("黑龙","黑龙江");
+        map.set("内蒙","内蒙古");
+        const that = this
         const BMap = window.BMap;
         const geoc = new BMap.Geocoder();
         const geolocation = new BMap.Geolocation();
         geolocation.getCurrentPosition(function (r) {
             geoc.getLocation(r.point, function (rs) {
-                console.log(rs);
+                let location=rs.address.substring(0,2)
+                if(map.has(location)){
+                    location=map.get(location)
+                }
+                that.setState({location})
             });
         });
+        
     }
+
     render() {
-        // this.getLocation();
         return (
             <Layout className="layout">
                 <MyHeader getKey={this.getKey} />
-                <MyContent select={this.state.key} />
+                <MyContent select={this.state.key} location={this.state.location}/>
                 <MyFooter />
             </Layout>
         );
