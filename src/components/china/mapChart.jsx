@@ -11,90 +11,11 @@ import "../css/mapChart.css";
 
 import { reqMapChartInChinaAll } from "../../api";
 
-
-
-
-
 const { TabPane } = Tabs;
 
 class MapChartInChina extends Component {
     state = {
-        all: [
-            
-        ],
-        data2: [
-            {
-                name: "大兴区",
-                value: 390,
-                alarm_num: 54,
-            },
-            {
-                name: "西城",
-                value: 119,
-            },
-            {
-                name: "朝阳",
-                value: 55,
-                alarm_num: 9,
-            },
-            {
-                name: "丰台",
-                value: 329,
-            },
-            {
-                name: "石景山",
-                value: 219,
-                alarm_num: 14,
-            },
-            {
-                name: "海淀",
-                value: 290,
-            },
-            {
-                name: "门头沟",
-                value: 319,
-                alarm_num: 2,
-            },
-            {
-                name: "房山",
-                value: 199,
-            },
-            {
-                name: "通州",
-                value: 419,
-                alarm_num: 11,
-            },
-            {
-                name: "顺义",
-                value: 299,
-            },
-            {
-                name: "昌平",
-                value: 49,
-            },
-            {
-                name: "大兴",
-                value: 219,
-                alarm_num: 15,
-            },
-            {
-                name: "怀柔",
-                value: 89,
-            },
-            {
-                name: "平谷",
-                value: 49,
-            },
-            {
-                name: "密云",
-                value: 209,
-                alarm_num: 27,
-            },
-            {
-                name: "延庆",
-                value: 129,
-            },
-        ]
+        all: [],
     };
 
     async componentDidMount() {
@@ -183,7 +104,7 @@ class MapChartInChina extends Component {
         });
         chart1.showLoading();
         const all = await reqMapChartInChinaAll();
-        this.setState(this.state = {all});
+        this.setState((this.state = { all }));
         chart1.hideLoading();
         chart1.setOption({
             series: [
