@@ -4,7 +4,7 @@ import ajax from "./ajax"
 //     return ajax("https://lab.isaaclin.cn//nCoV/api/overall")
 // }
 
-const BASE = ""
+const BASE = "api"
 export const reqinfoCard = () => ajax(BASE + "/nCoV/api/overall")
 export const reqInfoCardInChina = () => ajax(BASE + "/infoCardInChina")
 export const reqMapChartInChinaAll = () => ajax(BASE + "/mapChartInChinaAll")
