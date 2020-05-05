@@ -761,7 +761,7 @@ class MapChartLocal extends Component {
         
         
         const { location } = this.props;
-        console.log("location", location);
+        // console.log("location", location);
 
         const text = location + "现有累计确诊人数分布图";
         const chart = echarts.init(this.refs.map);
@@ -849,7 +849,7 @@ class MapChartLocal extends Component {
 
         chart.showLoading();
         let all = await reqMapChartInProvince({provinceName:location});
-        console.log(all)
+        // console.log(all)
         all=this.deal(all,location);
         this.setState(this.state = {all});
         chart.hideLoading();
