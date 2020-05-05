@@ -53,8 +53,9 @@ class MapChartLocal extends Component {
         all:[]
     }
     componentDidMount() {
+        
         const { location } = this.props;
-        // console.log("location", location);
+        console.log("location", location);
         const text = location + "现有累计确诊人数分布图";
         const chart = echarts.init(this.refs.map);
         chart.setOption({

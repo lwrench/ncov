@@ -39,7 +39,7 @@ class TrendLocal extends Component {
         });
         chart1.showLoading();
         const trend1 = await reqConfirmTrendInProvince({provinceName:location});
-        console.log("trend1",trend1)
+        // console.log("trend1",trend1)
         this.setState((this.state = { trend1 }));
         chart1.hideLoading();
         chart1.setOption({
@@ -68,7 +68,7 @@ class TrendLocal extends Component {
         });
         chart2.showLoading();
         const trend2 = await reqDeadCureTrendInProvince({provinceName:location});
-        console.log("trend2",trend2)
+        // console.log("trend2",trend2)
         this.setState((this.state = { trend2 }));
         chart2.hideLoading();
         chart2.setOption({

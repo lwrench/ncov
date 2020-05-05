@@ -104,7 +104,7 @@ class MapChartInWorld extends Component {
         });
         chart1.showLoading();
         const all = await reqMapChartInWorldAll();
-        console.log("map", all);
+        // console.log("map", all);
         this.setState(this.state = {all});
         chart1.hideLoading();
         chart1.setOption({
