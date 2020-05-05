@@ -7,7 +7,7 @@ class MyFooter extends Component {
     render() {
         return (
             <Footer style={{ textAlign: "center" }}>
-                Ant Design ©2018 Created by Ant UED
+                疫情大数据 ©2020 
             </Footer>
         );
     }
